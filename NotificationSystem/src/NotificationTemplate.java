@@ -1,34 +1,34 @@
+
 import java.util.Vector;
 
 enum Type{
     ConfirmEmail,ForgetPassword,Booking
 }
 enum Channels{
-
+    SMS,Email
 }
 public class NotificationTemplate {
     private String subject;
     private String content;
     private String language;
     private Type type;
-    private int numbersOfPlaceholders;
-    private String[]  placeholders;
+    private Channels channels;
 
-    public NotificationTemplate(String subject, String content, String language, Type type, int numbersOfPlaceholders, String[] placeholders) {
+    public NotificationTemplate(String subject, String content, String language, Type type,Channels channels) {
         this.subject = subject;
         this.content = content;
         this.language = language;
         this.type = type;
-        this.numbersOfPlaceholders = numbersOfPlaceholders;
-        this.placeholders = placeholders;
+        this.channels=channels;
+
     }
     public NotificationTemplate() {
         subject = null;
         content = null;
         language = null;
         type = null;
-        numbersOfPlaceholders = 0;
-        placeholders = null;
+        channels=null;
+
     }
 
 
@@ -64,38 +64,28 @@ public class NotificationTemplate {
         this.type = type;
     }
 
-    public int getNumbersOfPlaceholders() {
-        return numbersOfPlaceholders;
+    public Channels getChannels() {
+        return channels;
     }
 
-    public void setNumbersOfPlaceholders(int numbersOfPlaceholders) {
-        this.numbersOfPlaceholders = numbersOfPlaceholders;
+    public void setChannels(Channels channels) {
+        this.channels = channels;
     }
 
-    public String[] getPlaceholders() {
-        return placeholders;
-    }
 
-    public void setPlaceholders(String[] placeholders) {
-        this.placeholders = placeholders;
-    }
-    public void create(String subject, String content, String language, Type type, int numbersOfPlaceholders, String[] placeholders){
+    public void create(String subject, String content, String language, Type type,Channels channels){
         setSubject(subject);
         setContent(content);
         setLanguage(language);
         setType(type);
-        setNumbersOfPlaceholders(numbersOfPlaceholders);
-        setPlaceholders(placeholders);
-
+        setChannels(channels);
     }
     public void read(){
         System.out.println("Subject : " + getSubject());
         System.out.println("Content : " + getContent());
         System.out.println("Language : " + getLanguage());
         System.out.println("Notification Type : " + getType());
-        System.out.println("Place holders : " + getPlaceholders());
-        System.out.println("Number of Place holders : " + getNumbersOfPlaceholders());
-
+        System.out.println("Channels : " + getChannels());
     }
     public void updateSubject(String subject){
         setSubject(subject);
@@ -108,10 +98,6 @@ public class NotificationTemplate {
     }
     public void updateType(Type type){
         setType(type);
-    }
-    public void updatePlaceholders(String[] placeholders,int numbersOfPlaceholders){
-        setPlaceholders(placeholders);
-        setNumbersOfPlaceholders(numbersOfPlaceholders);
     }
     public void delete(Vector<Notification> notification){
         if (notification.contains(this)){
